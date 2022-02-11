@@ -6,10 +6,19 @@ function fetchCountries(name) {
     .catch(err => console.log(err));
 }
 
-function filterCountries(name, capital, currencies) {
-    return fetch(`${BASE_URL}//v2/all?fields=${name},${capital},${currencies}`)
+/* function filterCountries() {
+   
+    return fetch(`${BASE_URL}/v2/all?fields=name,capital,population,flag,languages`)
+     .then(response => response.json())
+     .catch(err => console.log(err));
+ } */
+
+ function filterCountries(name) {
+   
+    return fetch(`${BASE_URL}/v2/name/${name}?fields=name,capital,population,flag,languages`)
      .then(response => response.json())
      .catch(err => console.log(err));
  }
+
  
-export default {fetchCountries, filterCountries, BASE_URL};
+export default {fetchCountries, filterCountries };

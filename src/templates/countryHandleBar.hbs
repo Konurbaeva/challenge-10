@@ -1,15 +1,15 @@
 <div class="card">
     {{#each this}}
   <div class="card-img-top">
-    <img src="{{flags.svg}}" alt="{{name.official}}" width=120 height=100>
+    <img src="{{flag}}" alt="{{name.official}}" width=80 height=50>
   </div>
   <div class="card-body">
-    <h2 class="card-title"> Name: {{name.official}}</h2>
+    <h2 class="card-title"> Name: {{name}}</h2>
     <p class="card-text"> Capital: {{ capital }}</p>
     <p class="card-text"> Population: {{population}}</p>
      <p class="card-text"> Languages:
     {{#each languages}}
-     {{this}}
+     {{this.name}}
     {{/each}}
  </p>
   </div>
