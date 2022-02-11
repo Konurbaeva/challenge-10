@@ -19,11 +19,20 @@ searchBox.addEventListener('input', debounce(filterCountriesChange, DEBOUNCE_DEL
     .catch(onFetchError)
   } */
 
+/* function filterCountriesChange() {
+  
+  BASE_URL.filterCountries(searchBox.value)
+    .then(renderCountry)
+    .catch(onFetchError)
+} */
+
 function filterCountriesChange() {
+  
   BASE_URL.filterCountries(searchBox.value)
     .then(renderCountry)
     .catch(onFetchError)
 }
+
 
   function onFetchError(error) {
     console.error(error);
@@ -34,4 +43,3 @@ function filterCountriesChange() {
     const countryMarkup = countryTemplate(country).trim()
      countryInfo.innerHTML = countryMarkup;
    }
-   
