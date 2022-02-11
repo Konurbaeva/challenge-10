@@ -1,6 +1,7 @@
 // import getRefs from "./js/get-refs";
 import Notiflix from 'notiflix';
-import API from "./js/api-service.js";
+import BASE_URL from "./js/api-service.js";
+import fetchCountries from './js/fetchCountries.js';
 //import countryTemplate from './country-info.hbs';
 
 //const DEBOUNCE_DELAY = 300;
@@ -9,33 +10,40 @@ const searchBox = document.querySelector('input#search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
 const log = document.getElementById('values');
+const capitalEl = document.querySelector('.country-capital');
+const populationEl = document.querySelector('.country-population');
+const languageEl = document.querySelector('.country-language');
 
-searchBox.addEventListener('input', fetchCountriesChange);
+
+searchBox.addEventListener('input', filterCountriesChange);
 //searchBox.addEventListener('onchange', filterCountriesChange);
 
-
-
 function fetchCountriesChange(e) {
-    log.textContent = e.target.value
-   // const currentTarget = e.currentTarget.value;
+    log.textContent = e.target.value;
 
-    console.log('fetchCountriesChange: ',  searchBox.value)
-
-    API.fetchCountries(searchBox.value)
+    BASE_URL.fetchCountries(searchBox.value)
     .then(renderCountry)
     .catch(onFetchError)
+
   }
 
-/* 
-todo implement filter
 function filterCountriesChange(e) {
-    log.textContent = e.target.value
-    const currentTarget = e.currentTarget.value;
 
-    API.filterCountries(currentTarget)
-    .then(renderCountry)
-    .catch(onFetchError)
-  } */
+  console.log('name: ')
+  console.log('capital: ')
+  console.log('currencies: ')
+
+  BASE_URL.filterCountries(capitalEl.value, populationEl.value, languageEl.value)
+  .then(renderCountry)
+  .catch(onFetchError)
+
+}
+
+function onSuccess(success) {
+  console.log('response on success', success);
+ // Notiflix.Notify.failure('error: ', error);
+ }
+
 
   function onFetchError(error) {
     console.error(error);
@@ -50,6 +58,7 @@ function filterCountriesChange(e) {
  function createCountryMarkup(countries) {
 
     console.log('countries: ', countries);
+
 
     const markup =  countries.map(({ name, capital, population, flags, languages } ) => {
         return `
