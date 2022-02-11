@@ -3,7 +3,8 @@ import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
 import BASE_URL from "./js/api-service.js";
 import fetchCountries from './js/fetchCountries.js';
-//import countryTemplate from './country-info.hbs';
+
+import countryTemplate from './templates/countryHandleBar.hbs';
 
 const DEBOUNCE_DELAY = 300;
 
@@ -11,9 +12,6 @@ const searchBox = document.querySelector('input#search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
 const log = document.getElementById('values');
-/* const capitalEl = document.querySelector('.country-capital');
-const populationEl = document.querySelector('.country-population');
-const languageEl = document.querySelector('.country-language'); */
 
 
 searchBox.addEventListener('input', debounce(fetchCountriesChange, DEBOUNCE_DELAY));
@@ -56,14 +54,20 @@ function onSuccess(success) {
    // Notiflix.Notify.failure('error: ', error);
    }
 
-  function renderCountry(countries) {
-    const countryMarkup = createCountryMarkup(countries);
+ /*  function renderCountry(countries) {
+   const countryMarkup = createCountryMarkup(countries);
     countryInfo.insertAdjacentHTML('beforeend', countryMarkup);
   }
+ */
 
+  function renderCountry(country) {
+    const countryMarkup = countryTemplate(country);
+     countryInfo.innerHTML = countryMarkup;
+   }
+   
  function createCountryMarkup(countries) {
     console.log('countries: ', countries);
-    
+
     console.log('countries.name: ', countries[0].name);
     console.log('countries.capital: ', countries[0].capital);
     console.log('countries.population: ', countries[0].population);
