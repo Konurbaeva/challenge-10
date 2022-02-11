@@ -1,17 +1,17 @@
 <div class="card">
     {{#each this}}
   <div class="card-img-top">
-    <img src="{{flags.svg}}" alt="{{name.official}}">
+    <img src="{{flags.svg}}" alt="{{name.official}}" width=120 height=100>
   </div>
   <div class="card-body">
-    <h2 class="card-title">Name: {{name.official}}</h2>
-    <p class="card-text">Capital: {{ capital }}</p>
+    <h2 class="card-title"> Name: {{name.official}}</h2>
+    <p class="card-text"> Capital: {{ capital }}</p>
     <p class="card-text"> Population: {{population}}</p>
-    <ul class="list-group"></ul>
+     <p class="card-text"> Languages:
     {{#each languages}}
-      <li class="list-group-item">{{language}}</li>
+     {{this}}
     {{/each}}
-    </ul>
+ </p>
   </div>
      {{/each}}
 </div>

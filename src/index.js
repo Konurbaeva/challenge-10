@@ -17,12 +17,9 @@ const log = document.getElementById('values');
 searchBox.addEventListener('input', debounce(fetchCountriesChange, DEBOUNCE_DELAY));
 
 function fetchCountriesChange(e) {
-    log.textContent = e.target.value;
-
     BASE_URL.fetchCountries(searchBox.value)
     .then(renderCountry)
     .catch(onFetchError)
-
   }
 
 /* function filterCountriesChange(e) {
@@ -54,6 +51,7 @@ function onSuccess(success) {
    }
 
   function renderCountry(country) {
+   
     const countryMarkup = countryTemplate(country);
      countryInfo.innerHTML = countryMarkup;
    }
