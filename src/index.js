@@ -1,10 +1,11 @@
+import debounce from 'lodash.debounce';
 // import getRefs from "./js/get-refs";
 import Notiflix from 'notiflix';
 import BASE_URL from "./js/api-service.js";
 import fetchCountries from './js/fetchCountries.js';
 //import countryTemplate from './country-info.hbs';
 
-//const DEBOUNCE_DELAY = 300;
+const DEBOUNCE_DELAY = 300;
 
 const searchBox = document.querySelector('input#search-box');
 const countryList = document.querySelector('.country-list');
@@ -15,8 +16,7 @@ const populationEl = document.querySelector('.country-population');
 const languageEl = document.querySelector('.country-language');
 
 
-searchBox.addEventListener('input', filterCountriesChange);
-//searchBox.addEventListener('onchange', filterCountriesChange);
+searchBox.addEventListener('input', debounce(fetchCountriesChange, DEBOUNCE_DELAY));
 
 function fetchCountriesChange(e) {
     log.textContent = e.target.value;
@@ -58,7 +58,6 @@ function onSuccess(success) {
  function createCountryMarkup(countries) {
 
     console.log('countries: ', countries);
-
 
     const markup =  countries.map(({ name, capital, population, flags, languages } ) => {
         return `
