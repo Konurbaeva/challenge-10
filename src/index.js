@@ -1,5 +1,4 @@
 import debounce from 'lodash.debounce';
-// import getRefs from "./js/get-refs";
 import Notiflix from 'notiflix';
 import BASE_URL from "./js/api-service.js";
 import singleCountryTemplate from './templates/singleCountryTemplate.hbs';
@@ -41,8 +40,8 @@ function checkResponse(response) {
     if(response.length > 2 || response.length < 10) {
       const countryMarkup = multipleCountriesTemplate(response).trim()
       countryInfo.innerHTML = countryMarkup;
-    } else {
+    } 
       const countryMarkup = singleCountryTemplate(response).trim()
       countryInfo.innerHTML = countryMarkup;
-    }
+    
    }

@@ -1,11 +1,10 @@
 <div class="card">
     {{#each this}}
+  <ul class="country-list">
   <div class="card-img-top">
-    <img src="{{flag}}" alt="{{name.official}}" width=80 height=50>
+   
+    <li class="country-list-item"><img src="{{flag}}" alt="{{name.official}}" width=45 height=30> {{name}}</li>
   </div>
-  <div class="card-body">
-    <h2 class="card-title"> Name: {{name}}</h2>
- </p>
-  </div>
+  </ul>
      {{/each}}
 </div>
