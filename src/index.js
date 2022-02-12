@@ -20,23 +20,35 @@ function filterCountriesChange() {
 function checkResponse(response) {
     if(response.message === 'Not Found' || response.message === 'Page Not Found'){
       Notiflix.Notify.failure("Oops, there is no country with that name");
-    } else if (response.length > 5) {
+    } else if (response.length > 10) {
       Notiflix.Notify.info("Too many matches found. Please enter a more specific name.");
-    } else {
-      renderCountry(response);
-    }
+    } 
+    
+    renderCountry(response);
 }
   function onFetchError(error) {
     console.error(error);
     Notiflix.Notify.failure('error: ', error);
    }
 
-  function renderCountry(response) {
+ /*  function renderCountry(response) {
     if(response.length > 2 && response.length < 10) {
       const multipleCountriesMarkup = multipleCountriesTemplate(response).trim()
       countryInfo.innerHTML = multipleCountriesMarkup;
-    }  if(response.length === 1){
+    } else if(response.length === 1){
       const singleCountryMarkup = singleCountryTemplate(response).trim()
       countryInfo.innerHTML = singleCountryMarkup;
     } 
+   } */
+
+   function renderCountry(response) {
+    if(response.length > 1 && response.length < 10) {
+      const multipleCountriesMarkup = multipleCountriesTemplate(response).trim()
+      countryInfo.innerHTML = multipleCountriesMarkup;
+    } else if(response.length === 1){
+      const singleCountryMarkup = singleCountryTemplate(response).trim()
+      countryInfo.innerHTML = singleCountryMarkup;
+    } else {
+      countryInfo.innerHTML = '';
+    }
    }

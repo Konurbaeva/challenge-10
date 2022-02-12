@@ -4,10 +4,10 @@
     <img src="{{flag}}" alt="{{name.official}}" width=80 height=50>
   </div>
   <div class="card-body">
-    <h2 class="card-title"> Name: {{name}}</h2>
-    <p class="card-text"> Capital: {{ capital }}</p>
-    <p class="card-text"> Population: {{population}}</p>
-     <p class="card-text"> Languages:
+    <h2 class="card-title"> <b>Name:</b> {{name}}</h2>
+    <p class="card-text"> <b>Capital:</b> {{ capital }}</p>
+    <p class="card-text"> <b>Population:</b> {{population}}</p>
+     <p class="card-text"> <b>Languages:</b>
     {{#each languages}}
     {{#if @index}}, {{/if}}
       {{this.name}}
