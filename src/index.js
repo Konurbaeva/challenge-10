@@ -32,7 +32,7 @@ function checkResponse(response) {
    }
 
   function renderCountry(response) {
-    if(response.length > 2 || response.length < 10) {
+    if(response.length > 2 && response.length < 10) {
       const multipleCountriesMarkup = multipleCountriesTemplate(response).trim()
       countryInfo.innerHTML = multipleCountriesMarkup;
     }  if(response.length === 1){
