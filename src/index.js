@@ -39,9 +39,11 @@ function checkResponse(response) {
   function renderCountry(response) {
     if(response.length > 2 || response.length < 10) {
       const countryMarkup = multipleCountriesTemplate(response).trim()
+      
+  
       countryInfo.innerHTML = countryMarkup;
-    } 
+    }  else {
       const countryMarkup = singleCountryTemplate(response).trim()
       countryInfo.innerHTML = countryMarkup;
-    
+    } 
    }
