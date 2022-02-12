@@ -31,16 +31,6 @@ function checkResponse(response) {
     Notiflix.Notify.failure('error: ', error);
    }
 
- /*  function renderCountry(response) {
-    if(response.length > 2 && response.length < 10) {
-      const multipleCountriesMarkup = multipleCountriesTemplate(response).trim()
-      countryInfo.innerHTML = multipleCountriesMarkup;
-    } else if(response.length === 1){
-      const singleCountryMarkup = singleCountryTemplate(response).trim()
-      countryInfo.innerHTML = singleCountryMarkup;
-    } 
-   } */
-
    function renderCountry(response) {
     if(response.length > 1 && response.length < 10) {
       const multipleCountriesMarkup = multipleCountriesTemplate(response).trim()
