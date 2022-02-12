@@ -7,22 +7,17 @@ import multipleCountriesTemplate from './templates/multipleCountriesTemplate.hbs
 const DEBOUNCE_DELAY = 300;
 
 const searchBox = document.querySelector('input#search-box');
-const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
-
 
 searchBox.addEventListener('input', debounce(filterCountriesChange, DEBOUNCE_DELAY));
 
 function filterCountriesChange() {
-  
   BASE_URL.filterCountries(searchBox.value)
     .then(checkResponse)
     .catch(onFetchError);
 }
 
-
 function checkResponse(response) {
-
     if(response.message === 'Not Found' || response.message === 'Page Not Found'){
       Notiflix.Notify.failure("Oops, there is no country with that name");
     } else if (response.length > 5) {
@@ -38,12 +33,10 @@ function checkResponse(response) {
 
   function renderCountry(response) {
     if(response.length > 2 || response.length < 10) {
-      const countryMarkup = multipleCountriesTemplate(response).trim()
-      
-  
-      countryInfo.innerHTML = countryMarkup;
-    }  else {
-      const countryMarkup = singleCountryTemplate(response).trim()
-      countryInfo.innerHTML = countryMarkup;
+      const multipleCountriesMarkup = multipleCountriesTemplate(response).trim()
+      countryInfo.innerHTML = multipleCountriesMarkup;
+    }  if(response.length === 1){
+      const singleCountryMarkup = singleCountryTemplate(response).trim()
+      countryInfo.innerHTML = singleCountryMarkup;
     } 
    }
