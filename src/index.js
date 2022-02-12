@@ -29,11 +29,21 @@ searchBox.addEventListener('input', debounce(filterCountriesChange, DEBOUNCE_DEL
 function filterCountriesChange() {
   
   BASE_URL.filterCountries(searchBox.value)
-    .then(renderCountry)
-    .catch(onFetchError)
+    .then(checkResponse)
+    .catch(onFetchError);
 }
 
 
+function checkResponse(response) {
+
+  console.log('checkResponse: ' + response.message)
+
+  if(response.message === 'Not Found' || response.message === 'Page Not Found'){
+    Notiflix.Notify.failure("Oops, there is no country with that name");
+  } else {
+    renderCountry(response);
+  }
+}
   function onFetchError(error) {
     console.error(error);
     Notiflix.Notify.failure('error: ', error);
